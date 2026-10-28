@@ -150,10 +150,16 @@ case $choice in
     local count=0
 
 	local file=""
-    case $type in
-        "Leaderboard" file="leaderboard_lvl${CURRENT_LEVEL}.txt" ;;
-        "History"     file="history_lvl${CURRENT_LEVEL}.txt" ;;
-        "Personal Best" file="pb_lvl${CURRENT_LEVEL}.txt" ;;
+    case "$type" in
+        "Leaderboard")
+         file="leaderboard_lvl${CURRENT_LEVEL}.txt" 
+         ;;
+        "History")   
+         file="history_lvl${CURRENT_LEVEL}.txt"
+          ;;
+        "Personal Best") 
+        file="pb_lvl${CURRENT_LEVEL}.txt"
+         ;;
     esac
 
     echo "Displaying games for Level $CURRENT_LEVEL:"
