@@ -143,7 +143,7 @@ case $choice in
 	TOTAL_SKIPPED_ALL=0
 
 # Example function to load data for a specific level
-	load_level_data() 
+	load_level_data() {
     local level=$1
     local leaderboard_file="leaderboard_lvl${level}.txt"
     
@@ -158,6 +158,7 @@ case $choice in
 
     echo "Displaying games for Level $CURRENT_LEVEL:"
     echo "=========================================="
+    }
 
 	# personal best only for players line
 		best=$(awk -F'|' -v )play 
@@ -197,10 +198,10 @@ case $choice in
 		touch game_history.txt
 
 	# Valid line ckecker: 6 field ,level ok, tries + duration numbers
-	is_valid()
+	is_valid() {
 	echo "==========Game History (valid only)=========="
 	echo "$1" | awk -F'|' NF==6 && ($2=="easy || $2=="normal" || $2=="hard") && $5~/^[0-9]+$/ && $6~/^[0-9]+$/ | grep -q
-	
+	}
 		
      if [[ -z "$best" ]] ; then
         echo ";First valid game on $level level!"
