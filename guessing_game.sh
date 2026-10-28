@@ -79,11 +79,14 @@ if [[ "$level" == hard ]]; then
     max=1000
     while (( "$guess" != "$number" )); do
         read -rp " please guess a number between o and 1000 " guess
+    done
 
 	# Read file line by line
 	while IFS= read -r line || [[ -n "$line" ]]; do
 		# Skip empty line
 		[[ -z "$line" ]] && continue
+
+    done
 
 		# Skip line that don't match epected criteria
 		if [[ ! "$line" == *"|"* ]]; then
@@ -91,12 +94,13 @@ if [[ "$level" == hard ]]; then
 			continue
 		fi
 		clear
+fi
 	# show menu with warning
-	show_menu() 
+	show_menu() { 
 	echo " -----------------------------------------------"
 	echo "                GAME MANU                     "
 	echo " ------------------------------------------------"
-
+    } 
 	# Display warnings if any lines were skipped anywhere
 	total_skipped=$((SKIPPED_LEADERBOARD + SKIPPED_HISTORY + SKIPPED_PB))
 	if [[ $total_skipped -gt 0 ]]; then
@@ -198,17 +202,16 @@ case $choice in
 	echo "$1" | awk -F'|' NF==6 && ($2=="easy || $2=="normal" || $2=="hard") && $5~/^[0-9]+$/ && $6~/^[0-9]+$/ | grep -q
 	
 		
-        if [[ -z "$best" ]] ; then
-            echo ";First valid game on $level level!"
-        else
-            echo "your personal best on $level is $best tries"
-        fi
+     if [[ -z "$best" ]] ; then
+        echo ";First valid game on $level level!"
+    else
+        echo "your personal best on $level is $best tries"
+    fi
 
-        if (( $attempt < $best )); then
-            echo "new personal best for $level"
-        fi
+    if (( $attempt < $best )); then
+        echo "new personal best for $level"
+    fi
 
-fi 
 end_time=$(date "+%y-%m-%d %h:%m:%s")
 end_seconds=$(date +%s)
 duration=$(end_seconds - start_seconds)
