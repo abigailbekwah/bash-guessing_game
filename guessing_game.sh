@@ -101,7 +101,7 @@ if [[ "$level" == hard ]]; then
 	total_skipped=$((SKIPPED_LEADERBOARD + SKIPPED_HISTORY + SKIPPED_PB))
 	if [[ $total_skipped -gt 0 ]]; then
 		echo -e "\033[33m warning: $total_skipped damage line(s) were skipped to prevent crashes:\033]0m"
-		[[ $SKIPPED_LEADERBOARD -gt 0]] && echo " -Learderboard: $SKIPPED_LEADERBOARD skipped"
+		[[ $SKIPPED_LEADERBOARD -gt 0 ]] && echo " -Learderboard: $SKIPPED_LEADERBOARD skipped"
 		[[ $SKIPPED_HISTORY -gt 0 ]]    && echo"  -HISTORY: $SKIPPED_HISTORY skipped"
 		[[ $SKIPPED_PB -gt 0 ]]         && echo " -Personal Best: $SKIPPED_PB skipped"
 		 echo "=========================================="
