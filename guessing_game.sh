@@ -92,7 +92,7 @@ if [[ "$level" == hard ]]; then
 		fi
 		clear
 	# show menu with warning
-	show_menu() {
+	show_menu() 
 	echo " -----------------------------------------------"
 	echo "                GAME MANU                     "
 	echo " ------------------------------------------------"
@@ -139,7 +139,7 @@ case $choice in
 	TOTAL_SKIPPED_ALL=0
 
 # Example function to load data for a specific level
-	load_level_data() {
+	load_level_data() 
     local level=$1
     local leaderboard_file="leaderboard_lvl${level}.txt"
     
@@ -147,17 +147,18 @@ case $choice in
 
 	local file=""
     case $type in
-        "Leaderboard") file="leaderboard_lvl${CURRENT_LEVEL}.txt" ;;
-        "History")     file="history_lvl${CURRENT_LEVEL}.txt" ;;
-        "Personal Best") file="pb_lvl${CURRENT_LEVEL}.txt" ;;
+        "Leaderboard" file="leaderboard_lvl${CURRENT_LEVEL}.txt" ;;
+        "History"     file="history_lvl${CURRENT_LEVEL}.txt" ;;
+        "Personal Best" file="pb_lvl${CURRENT_LEVEL}.txt" ;;
     esac
 
     echo "Displaying games for Level $CURRENT_LEVEL:"
     echo "=========================================="
 
 	# personal best only for players line
-		best=$(awk -F'|' -v play# Main Menu
-	show_menu()
+		best=$(awk -F'|' -v )play 
+        # Main Menu
+	show_menu() {
     while true; do
         scan_all_levels
         clear
@@ -174,6 +175,8 @@ case $choice in
         echo "5. Exit"
         echo "=================================================="
 
+    done
+    }
 
         read -p "Select an option [1-5]: " choice="$name" -v lvl="$level" 
 			NF==6 && 
@@ -208,7 +211,7 @@ case $choice in
 fi 
 end_time=$(date "+%y-%m-%d %h:%m:%s")
 end_seconds=$(date +%s)
-duration=$((end_seconds - start_seconds))
+duration=$(end_seconds - start_seconds)
 
 
 echo "$name|$level|$start_time|$end_time|$tries|$duration" >> game_history.txt
