@@ -192,9 +192,12 @@ case $choice in
         read -p "Select an option [1-5]: " choice="$name" -v lvl="$level" 
 			NF==6 && 
 			($2=="easy" || $2=="normal" || $2=="hard") &&
-			$5~/^[0-9]+$/ && $6~/^[0-9]+$/ &&
-			$1==player && $2==lvl 
-			print $5
+			$5~/^[0-9]+$/ && 
+            $6~/^[0-9]+$/ }&&
+            $1==player && 
+            $2==lvl 
+			print $5{
+            }
 			 game_history.txt |sort -n | head -1
 
 	# show invalid lines
@@ -205,12 +208,18 @@ case $choice in
 
 	# Valid line ckecker: 6 field ,level ok, tries + duration numbers
 	is_valid() {
+    local line="$1"
+	echo "$line" | awk -F'|' 
+    NF==6 && ($2=="easy || $2=="normal" || $2=="hard") && 
+    $5~/^[0-9]+$/ && 
+    $6~/^[0-9]+$/ 
+    | 'grep -q.
+
+}
 	echo "==========Game History (valid only)=========="
-	echo "$1" | awk -F'|' NF==6 && ($2=="easy || $2=="normal" || $2=="hard") && $5~/^[0-9]+$/ && $6~/^[0-9]+$/ | grep -q
-	}
-		
-     if [[ -z "$best" ]] ; then
-        echo ";First valid game on $level level!"
+     
+     if [[ -z "$best" ]]; then
+        echo "First valid game on $level level!"
     else
         echo "your personal best on $level is $best tries"
     fi
@@ -220,6 +229,12 @@ case $choice in
     fi
 
 end_time=$(date "+%y-%m-%d %h:%m:%s")
+end_seconds=$(date +%s)
+duration=$(end_seconds - start_seconds)
+
+
+echo "$name|$level|$start_time|$end_time|$tries|$duration" >> game_history.txt
+echo "Game saved to game_history.txt"end_time=$(date "+%y-%m-%d %h:%m:%s")
 end_seconds=$(date +%s)
 duration=$(end_seconds - start_seconds)
 
